@@ -6,8 +6,12 @@ public:
 		return("Base::func1() called");
 	}
 
-	std::string func2() {
+	virtual std::string func2() {
 		return("Base::func2() called");
+	}
+
+	virtual ~Base() {
+		std::cout << "Base Destructor called\n";
 	}
 };
 
@@ -20,6 +24,10 @@ public:
 	std::string func2() {
 		return("Derived1::func2() called");
 	}
+
+	~Derived1() {
+		std::cout << "Derived1 Destructor called\n";
+	}
 };
 
 class Derived2 : public Base {
@@ -31,9 +39,14 @@ public:
 	std::string func2() {
 		return("Derived2::func2() called");
 	}
+
+	~Derived2() {
+		std::cout << "Derived2 Destructor called\n";
+	}
 };
 
 int main() {
+	/*
 	Base b;
 	Derived1 d1;
 	Derived2 d2;
@@ -57,6 +70,7 @@ int main() {
 	std::cout << "\t\t\td2.func2(): " << pb->func2().c_str() << "\n";
 
 	Base & rb = b;
+	rb = d1;
 	std::cout << "Scenario 2 : Calling functions on reference to base\n";
 	std::cout << "\tb.func1(): " << rb.func1().c_str() << "\n";
 	std::cout << "\tb.func2(): " << rb.func2().c_str() << "\n";
@@ -66,4 +80,9 @@ int main() {
 	Base & rb3 = d2;
 	std::cout << "\t\t\td2.func1(): " << rb3.func1().c_str() << "\n";
 	std::cout << "\t\t\td2.func2(): " << rb3.func2().c_str() << "\n";
+	*/
+
+	Base * b = new Derived1();
+	b->func1();
+	delete b;
 }
