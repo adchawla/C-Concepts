@@ -34,6 +34,17 @@ public:
         return *this;
     }
 
+    A & operator = (const A && lhs) {
+        if (this != &lhs) {
+            mName = std::move(lhs.mName);
+            std::cout << "A's move assignment operator for " << mName.c_str() << " object\n";
+        }
+        else {
+            std::cout << "Nothing to be done in move assignment operator for " << mName.c_str() << " object\n";
+        }
+        return *this;
+    }
+
     const std::string & getName() { return mName;  }
 
 private:
