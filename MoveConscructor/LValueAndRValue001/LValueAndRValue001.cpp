@@ -1,8 +1,8 @@
 #include <iostream>
 
 //int foo() { return 2; }
-
-int & foo() { return 2; }
+int a;
+int & foo() { return a; }
 
 int main()
 {
