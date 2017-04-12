@@ -18,7 +18,7 @@ public:
         std::cout << "A's copy constructor for " << mName.c_str() << " object\n";
     }
 
-    A(const A && src)
+    A(A && src)
         : mName(std::move(src.mName)) {
         std::cout << "A's move constructor for " << mName.c_str() << " object\n";
     }
@@ -34,7 +34,7 @@ public:
         return *this;
     }
 
-    A & operator = (const A && lhs) {
+    A & operator = (A && lhs) {
         if (this != &lhs) {
             mName = std::move(lhs.mName);
             std::cout << "A's move assignment operator for " << mName.c_str() << " object\n";
