@@ -31,6 +31,7 @@ public:
         else {
             std::cout << "Nothing to be done in assignment operator for " << mName.c_str() << " object\n";
         }
+        return *this;
     }
 
     const std::string & getName() { return mName;  }
@@ -40,10 +41,12 @@ private:
 };
 
 A combine(A & a, A & b);
+
 int main() {
     A a("one");
     A b("two");
-    A c = combine(a, b);
+    A c("a");
+    c = combine(a, b);
     std::cout << "Name of c is " << c.getName().c_str() << "\n";
     getch();
 }
