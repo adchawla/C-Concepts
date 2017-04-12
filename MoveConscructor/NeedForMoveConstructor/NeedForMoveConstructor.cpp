@@ -34,7 +34,7 @@ private:
     std::string mName;
 };
 
-A combine(A a, A b);
+A combine(A & a, A & b);
 int main() {
     A a("one");
     A b("two");
@@ -43,7 +43,7 @@ int main() {
     getch();
 }
 
-A combine(A a, A b) {
+A combine(A & a, A & b) {
     std::string newName(a.getName());
     newName.append(" - ").append(b.getName());
     A c(newName);
