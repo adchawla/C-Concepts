@@ -18,6 +18,11 @@ public:
         //std::cout << "A's copy constructor for " << mName.c_str() << " object\n";
     }
 
+    A(const A && src)
+        : mName(std::move(src.mName)) {
+        //std::cout << " A's move constructor for " << mName.c_str() << " object\n";
+    }
+
     A & operator = (const A & lhs) {
         if (this != &lhs) {
             mName = lhs.mName + " - copy";
