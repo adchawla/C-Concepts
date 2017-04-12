@@ -1,6 +1,7 @@
 // named-reference.cpp  
 // Compile with: /EHsc  
-#include <iostream>  
+#include <iostream>
+#include <conio.h>
 using namespace std;
 
 // A class that contains a memory resource.  
@@ -29,5 +30,9 @@ int main()
 {
 
     // The compiler treats a named rvalue reference as an lvalue and an unnamed rvalue reference as an rvalue.
-    g(f(MemoryBlock()));
+    //g(f(MemoryBlock()));
+    MemoryBlock b = f(MemoryBlock());
+    g(b);
+    getch();
+    return 0;
 }
