@@ -51,12 +51,14 @@ int main(int argc, const char * argv[]) {
     sOperationRegistry.addOperation('/', divide);
     sOperationRegistry.addOperation('*', multiply);
     sOperationRegistry.addOperation('%', modulus);
-    
+    sOperationRegistry.addOperation('x', multiply);
+        
     performComputation('+', 2, 3);
     performComputation('-', 2, 3);
     performComputation('/', 2, 3);
     performComputation('*', 2, 3);
     performComputation('%', 2, 3);
+    performComputation('x', 2, 3);
 }
 
 int addition(int a, int b) { return a + b;}
