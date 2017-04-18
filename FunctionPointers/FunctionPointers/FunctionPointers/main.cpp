@@ -7,6 +7,37 @@
 //
 
 #include <iostream>
+#include <map>
+
+typedef int (*operationFn)(int, int);
+
+class OperationRegistry {
+public:
+    void addOperation(char operation, operationFn func) {
+        mOperationFns[operation] = func;
+    }
+    
+    operationFn getOperation(char operation) {
+        return mOperationFns.at(operation);
+    }
+    
+private:
+    std::map<char, operationFn> mOperationFns;
+};
+
+static OperationRegistry sOperationRegistry;
+
+void performComputation(char symbol, int a, int b) {
+    std::cout<<a<<" "<<symbol<<" "<<b<<" = ";
+    int result = 0;
+    try {
+        operationFn funcPtr = sOperationRegistry.getOperation(symbol);
+        result = funcPtr(a, b);
+        std::cout<<result<<"\n";
+    } catch (...) {
+        std::cout<<"undefined\n";
+    }
+}
 
 int addition(int a, int b);
 int subtract(int a, int b);
@@ -14,27 +45,9 @@ int divide(int a, int b);
 int multiply(int a, int b);
 int modulus(int a, int b);
 
-void performComputation(char symbol, int a, int b) {
-    std::cout<<a<<" "<<symbol<<" "<<b<<" = ";
-    int result = 0;
-    bool validSymbol = true;
-    switch(symbol) {
-        case '+' : result = addition(a, b); break;
-        case '-' : result =  subtract(a, b); break;
-        case '/' : result =  divide(a, b); break;
-        case '*' : result =  multiply(a, b); break;
-        case '%' : result = modulus(a, b); break;
-        default : validSymbol = false;
-    }
-    if (validSymbol) {
-        std::cout<<result<<"\n";
-    } else {
-        std::cout<<"undefined\n";
-    }
-    
-}
-
 int main(int argc, const char * argv[]) {
+    sOperationRegistry.addOperation('+', addition);
+    
     performComputation('+', 2, 3);
     performComputation('-', 2, 3);
     performComputation('/', 2, 3);
