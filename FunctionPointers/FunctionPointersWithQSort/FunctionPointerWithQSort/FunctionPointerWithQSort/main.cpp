@@ -50,4 +50,7 @@ int main()
     qsort(charArray, sizeof(charArray) /sizeof(char) - 1, sizeof(char), char_sorter_desc);
     printf("%s\n", charArray);
     
+    char name[] = "Amandeep Chawla";
+    qsort(name, sizeof(name) /sizeof(char) - 1, sizeof(char), char_sorter_desc);
+    printf("%s\n", name);
 }
