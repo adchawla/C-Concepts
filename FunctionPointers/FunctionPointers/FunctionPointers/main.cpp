@@ -47,6 +47,10 @@ int modulus(int a, int b);
 
 int main(int argc, const char * argv[]) {
     sOperationRegistry.addOperation('+', addition);
+    sOperationRegistry.addOperation('-', subtract);
+    sOperationRegistry.addOperation('/', divide);
+    sOperationRegistry.addOperation('*', multiply);
+    sOperationRegistry.addOperation('%', modulus);
     
     performComputation('+', 2, 3);
     performComputation('-', 2, 3);
