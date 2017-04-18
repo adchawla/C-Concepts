@@ -12,6 +12,7 @@ int addition(int a, int b);
 int subtract(int a, int b);
 int divide(int a, int b);
 int multiply(int a, int b);
+int modulus(int a, int b);
 
 void performComputation(char symbol, int a, int b) {
     std::cout<<a<<" "<<symbol<<" "<<b<<" = ";
@@ -22,6 +23,7 @@ void performComputation(char symbol, int a, int b) {
         case '-' : result =  subtract(a, b); break;
         case '/' : result =  divide(a, b); break;
         case '*' : result =  multiply(a, b); break;
+        case '%' : result = modulus(a, b); break;
         default : validSymbol = false;
     }
     if (validSymbol) {
@@ -44,3 +46,4 @@ int addition(int a, int b) { return a + b;}
 int subtract(int a, int b) { return a - b;}
 int divide(int a, int b) { return a / b;}
 int multiply(int a, int b) { return a * b;}
+int modulus(int a, int b) { return a % b; }
