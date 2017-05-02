@@ -92,12 +92,23 @@ int main() {
     //printEmployees(list);
     uint8_t minAge = 26, maxAge = 40;
     //printEmployees(sEmployeeDirectory.find(ageFunctor(minAge, maxAge)));
-    printEmployees(sEmployeeDirectory.find([=](shared_ptr<const Employee> emp) {
+    /*printEmployees(sEmployeeDirectory.find([=](shared_ptr<const Employee> emp) {
         auto age = emp->Age();
         if (age >= minAge && age <= maxAge) {
             return false;
         }
         return true;
-    }));
+    }));*/
+    auto lamda = [=](shared_ptr<const Employee> emp) {
+        auto age = emp->Age();
+        if (age >= minAge && age <= maxAge) {
+            return false;
+        }
+        return true;
+    };
+    printEmployees(sEmployeeDirectory.find(lamda));
+    minAge = 35;
+    std::cout << "\n";
+    printEmployees(sEmployeeDirectory.find(lamda));
 }
 
