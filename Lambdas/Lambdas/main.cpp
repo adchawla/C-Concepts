@@ -32,7 +32,15 @@ void printAllEmployees() {
     }
 }
 
+void printEmployees(std::vector<shared_ptr<Employee>> employees) {
+    for each (auto employee in employees)
+    {
+        std::cout << employee->Name() << "\t\t" << std::to_string(employee->Age()) << "\t\t" << employee->EmailID() << "\t" << employee->Department() << "\n";
+    }
+}
+
 int main() {
     populateEmployees();
-    printAllEmployees();
+    //printAllEmployees();
+    printEmployees(sEmployeeDirectory.findByName("A"));
 }

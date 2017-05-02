@@ -16,6 +16,9 @@ public:
     std::shared_ptr<const Employee> getEmployee(size_t index) const;
     std::shared_ptr<Employee> getEmployee(size_t index);
 
+    std::vector<std::shared_ptr<const Employee>> findByName(const std::string& name) const;
+    std::vector<std::shared_ptr<Employee>> findByName(const std::string& name);
+
     virtual ~EmployeeDirectory();
 
 private:
