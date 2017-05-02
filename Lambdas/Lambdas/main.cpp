@@ -39,6 +39,13 @@ void printEmployees(std::vector<shared_ptr<Employee>> employees) {
     }
 }
 
+bool mySearchFunc(shared_ptr<const Employee> emp) {
+    if (emp->Department() == "Android XD") {
+        return true;
+    }
+    return false;
+}
+
 int main() {
     populateEmployees();
     //printAllEmployees();
@@ -48,5 +55,8 @@ int main() {
         }
         return false;
     });
+    //printEmployees(list);
+
+    list = sEmployeeDirectory.find(mySearchFunc);
     printEmployees(list);
 }
