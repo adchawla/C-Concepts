@@ -91,5 +91,13 @@ int main() {
     //list = sEmployeeDirectory.find(myFunctor());
     //printEmployees(list);
     uint8_t minAge = 26, maxAge = 40;
-    printEmployees(sEmployeeDirectory.find(ageFunctor(minAge, maxAge)));
+    //printEmployees(sEmployeeDirectory.find(ageFunctor(minAge, maxAge)));
+    printEmployees(sEmployeeDirectory.find([=](shared_ptr<const Employee> emp) {
+        auto age = emp->Age();
+        if (age >= minAge && age <= maxAge) {
+            return false;
+        }
+        return true;
+    }));
 }
+
