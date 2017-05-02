@@ -46,6 +46,16 @@ bool mySearchFunc(shared_ptr<const Employee> emp) {
     return false;
 }
 
+class myFunctor {
+public:
+    bool operator()(shared_ptr<const Employee> emp) {
+        if (emp->EmailID().size() < 18) {
+            return true;
+        }
+        return false;
+    }
+};
+
 int main() {
     populateEmployees();
     //printAllEmployees();
@@ -58,5 +68,6 @@ int main() {
     //printEmployees(list);
 
     list = sEmployeeDirectory.find(mySearchFunc);
+    list = sEmployeeDirectory.find(myFunctor());
     printEmployees(list);
 }
