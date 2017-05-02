@@ -42,5 +42,11 @@ void printEmployees(std::vector<shared_ptr<Employee>> employees) {
 int main() {
     populateEmployees();
     //printAllEmployees();
-    printEmployees(sEmployeeDirectory.findByName("A"));
+    auto list = sEmployeeDirectory.find([](shared_ptr<const Employee> emp) {
+        if (emp->Age() < 30) {
+            return true;
+        }
+        return false;
+    });
+    printEmployees(list);
 }
