@@ -99,7 +99,7 @@ int main() {
         }
         return true;
     }));*/
-    auto lamda = [=](shared_ptr<const Employee> emp) {
+    auto lamda = [&](shared_ptr<const Employee> emp) {
         auto age = emp->Age();
         if (age >= minAge && age <= maxAge) {
             return false;
