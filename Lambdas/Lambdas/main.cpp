@@ -56,18 +56,40 @@ public:
     }
 };
 
+class ageFunctor {
+public:
+    ageFunctor(uint8_t min, uint8_t max)
+        : _min(min)
+        , _max(max) {}
+
+    bool operator()(shared_ptr<const Employee> emp) {
+        uint8_t age = emp->Age();
+        if (age >= _min && age <= _max) {
+            return true;
+        }
+        return false;
+    }
+
+private:
+    uint8_t _min;
+    uint8_t _max;
+};
+
 int main() {
     populateEmployees();
     //printAllEmployees();
-    auto list = sEmployeeDirectory.find([](shared_ptr<const Employee> emp) {
+    /*auto list = sEmployeeDirectory.find([](shared_ptr<const Employee> emp) {
         if (emp->Age() < 30) {
             return true;
         }
         return false;
     });
+    */
     //printEmployees(list);
 
-    list = sEmployeeDirectory.find(mySearchFunc);
-    list = sEmployeeDirectory.find(myFunctor());
-    printEmployees(list);
+    //list = sEmployeeDirectory.find(mySearchFunc);
+    //list = sEmployeeDirectory.find(myFunctor());
+    //printEmployees(list);
+    uint8_t minAge = 26, maxAge = 40;
+    printEmployees(sEmployeeDirectory.find(ageFunctor(minAge, maxAge)));
 }
