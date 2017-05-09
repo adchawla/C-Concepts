@@ -23,7 +23,7 @@ const std::string & Node::id()
 std::shared_ptr<Node> Node::addChild(const std::shared_ptr<Node> & node)
 {
     mChildren.push_back(node);
-    return std::shared_ptr<Node>(this);
+    return shared_from_this();
 }
 
 std::shared_ptr<Node> Node::getChild(size_t index)
