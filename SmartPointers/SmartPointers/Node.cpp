@@ -47,7 +47,7 @@ std::shared_ptr<Node> Node::makeNode(std::string & id)
 
 std::shared_ptr<Node> Node::getParent()
 {
-    return mParent;
+    return mParent.lock();
 }
 
 size_t Node::countOfChildren()

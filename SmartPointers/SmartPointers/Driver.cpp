@@ -23,8 +23,10 @@ int main() {
             ->addChild(Node::makeNode(std::string("grandChild2")))
             ->addChild(Node::makeNode(std::string("grandChild3")));
         printTree(rootNode);
+        std::cout << "Validity of parent of child1 is " << (child1->getParent() ? "true" : "false")<<"\n";
     }
     printTree(child1);
+    std::cout << "Validity of parent of child1 is " << (child1->getParent() ? "true" : "false") << "\n";
 }
 
 void  printTree(const std::shared_ptr<Node> & node, size_t level) {

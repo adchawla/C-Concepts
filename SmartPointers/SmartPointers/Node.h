@@ -22,6 +22,6 @@ protected:
 private:
     std::string mID;
     std::vector<std::shared_ptr<Node> > mChildren;
-    std::shared_ptr<Node> mParent;
+    std::weak_ptr<Node> mParent;
 };
 
