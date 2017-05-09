@@ -11,15 +11,17 @@ public:
     size_t countOfChildren();
     std::shared_ptr<Node> getChild(size_t index);
     static std::shared_ptr<Node> makeNode(std::string & id);
+    std::shared_ptr<Node> getParent();
 
     virtual ~Node();
     Node(const std::string & id);
 
 protected:
+    void setParent(const std::shared_ptr<Node> & parent);
 
 private:
     std::string mID;
     std::vector<std::shared_ptr<Node> > mChildren;
-    mutable size_t mReferenceCount;
+    std::shared_ptr<Node> mParent;
 };
 

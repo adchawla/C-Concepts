@@ -5,9 +5,13 @@
 
 Node::Node(const std::string & id)
     : mID(id)
-    , mReferenceCount(0)
 {
 
+}
+
+void Node::setParent(const std::shared_ptr<Node> & parent)
+{
+    mParent = parent;
 }
 
 Node::~Node()
@@ -23,7 +27,9 @@ const std::string & Node::id()
 std::shared_ptr<Node> Node::addChild(const std::shared_ptr<Node> & node)
 {
     mChildren.push_back(node);
-    return shared_from_this();
+    auto myself = shared_from_this();
+    node->setParent(myself);
+    return myself;
 }
 
 std::shared_ptr<Node> Node::getChild(size_t index)
@@ -37,6 +43,11 @@ std::shared_ptr<Node> Node::getChild(size_t index)
 std::shared_ptr<Node> Node::makeNode(std::string & id)
 {
     return std::make_shared<Node>(id);
+}
+
+std::shared_ptr<Node> Node::getParent()
+{
+    return mParent;
 }
 
 size_t Node::countOfChildren()
