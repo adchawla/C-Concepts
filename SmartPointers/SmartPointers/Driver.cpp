@@ -12,17 +12,18 @@ int main() {
     colletion.push_back(&myObj1);
     colletion.push_back(myObj2);
     delete myObj2;*/
-    auto rootNode = Node::makeNode(std::string("root"));
     auto child1 = Node::makeNode(std::string("child1"));
-    rootNode->addChild(child1);
-    rootNode->addChild(Node::makeNode(std::string("child2")));
-    rootNode->addChild(Node::makeNode(std::string("child3")));
-    rootNode->addChild(Node::makeNode(std::string("child4")));
-    child1->addChild(Node::makeNode(std::string("grandChild1")));
-    child1->addChild(Node::makeNode(std::string("grandChild2")));
-    child1->addChild(Node::makeNode(std::string("grandChild3")));
-    printTree(rootNode);
-    rootNode.reset();
+    {
+        auto rootNode = Node::makeNode(std::string("root"));
+        rootNode->addChild(child1);
+        rootNode->addChild(Node::makeNode(std::string("child2")));
+        rootNode->addChild(Node::makeNode(std::string("child3")));
+        rootNode->addChild(Node::makeNode(std::string("child4")));
+        child1->addChild(Node::makeNode(std::string("grandChild1")));
+        child1->addChild(Node::makeNode(std::string("grandChild2")));
+        child1->addChild(Node::makeNode(std::string("grandChild3")));
+        printTree(rootNode);
+    }
     printTree(child1);
 }
 
