@@ -22,6 +22,7 @@ int main() {
     child1->addChild(Node::makeNode(std::string("grandChild2")));
     child1->addChild(Node::makeNode(std::string("grandChild3")));
     printTree(rootNode);
+    rootNode.reset();
     printTree(child1);
 }
 
