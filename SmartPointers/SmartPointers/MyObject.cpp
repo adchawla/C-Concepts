@@ -3,13 +3,14 @@
 
 
 
-MyObject::MyObject()
+MyObject::MyObject(const std::string & id)
+    : mID(id)
 {
-    std::cout << "Object of MyObject constructed\n";
+    std::cout << "MyObject with id = "<<mID<<" is constructed\n";
 }
 
 
 MyObject::~MyObject()
 {
-    std::cout << "Object of MyObject destructed\n";
+    std::cout << "MyObject with id = "<< mID<<" is destructed\n";
 }

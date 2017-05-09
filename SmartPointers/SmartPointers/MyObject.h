@@ -1,8 +1,13 @@
 #pragma once
+#include <string>
+
 class MyObject
 {
 public:
-    MyObject();
+    MyObject(const std::string & id);
     virtual ~MyObject();
+
+private:
+    std::string mID;
 };
 
