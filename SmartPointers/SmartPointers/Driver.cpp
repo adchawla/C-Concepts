@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 
-void printTree(Node * rootNode);
+void printTree(const std::shared_ptr<Node> & rootNode);
 
 int main() {
     /*MyObject myObj1("1");
@@ -12,24 +12,20 @@ int main() {
     colletion.push_back(&myObj1);
     colletion.push_back(myObj2);
     delete myObj2;*/
-    Node * rootNode = new Node("root");
-    rootNode->addReference();
-    Node * child1 = new Node("child1");
-    child1->addReference();
+    auto rootNode = Node::makeNode(std::string("root"));
+    auto child1 = Node::makeNode(std::string("child1"));
     rootNode->addChild(child1);
-    rootNode->addChild(new Node("child2"));
-    rootNode->addChild(new Node("child3"));
-    rootNode->addChild(new Node("child4"));
-    child1->addChild(new Node("grandChild1"));
-    child1->addChild(new Node("grandChild2"));
-    child1->addChild(new Node("grandChild3"));
+    rootNode->addChild(Node::makeNode(std::string("child2")));
+    rootNode->addChild(Node::makeNode(std::string("child3")));
+    rootNode->addChild(Node::makeNode(std::string("child4")));
+    child1->addChild(Node::makeNode(std::string("grandChild1")));
+    child1->addChild(Node::makeNode(std::string("grandChild2")));
+    child1->addChild(Node::makeNode(std::string("grandChild3")));
     printTree(rootNode);
-    rootNode->removeReference();
     printTree(child1);
-    child1->removeReference();
 }
 
-void  printTree(Node * node, size_t level) {
+void  printTree(const std::shared_ptr<Node> & node, size_t level) {
     for (size_t i = 0; i < level; ++i) {
         std::cout << "\t";
     }
@@ -40,6 +36,6 @@ void  printTree(Node * node, size_t level) {
     }
 }
 
-void printTree(Node * rootNode) {
+void printTree(const std::shared_ptr<Node> & rootNode) {
     printTree(rootNode, 0);
 }

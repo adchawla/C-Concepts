@@ -12,10 +12,6 @@ Node::Node(const std::string & id)
 
 Node::~Node()
 {
-    size_t nCount = mChildren.size();
-    for (size_t i = 0; i < nCount; ++i) {
-        mChildren[i]->removeReference();
-    }
     std::cout << "Destructing Node with id = " << mID<<"\n";
 }
 
@@ -24,31 +20,22 @@ const std::string & Node::id()
     return mID;
 }
 
-void Node::addChild(Node * node)
+void Node::addChild(const std::shared_ptr<Node> & node)
 {
     mChildren.push_back(node);
-    node->addReference();
 }
 
-Node * Node::getChild(size_t index)
+std::shared_ptr<Node> Node::getChild(size_t index)
 {
     if (index < mChildren.size()) {
         return mChildren[index];
     }
-    return nullptr;
+    return std::shared_ptr<Node>();
 }
 
-void Node::addReference() const
+std::shared_ptr<Node> Node::makeNode(std::string & id)
 {
-    ++mReferenceCount;
-}
-
-void Node::removeReference() const
-{
-    --mReferenceCount;
-    if (mReferenceCount == 0) {
-        delete this;
-    }
+    return std::make_shared<Node>(id);
 }
 
 size_t Node::countOfChildren()

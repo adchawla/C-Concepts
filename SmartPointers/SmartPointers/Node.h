@@ -1,25 +1,25 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <memory>
 
 class Node
 {
 public:
-    Node(const std::string & id);
     const std::string & id();
-    void addChild(Node * node);
+    void addChild(const std::shared_ptr<Node> & node);
     size_t countOfChildren();
-    Node * getChild(size_t index);
+    std::shared_ptr<Node> getChild(size_t index);
+    static std::shared_ptr<Node> makeNode(std::string & id);
 
-    void addReference() const;
-    void removeReference() const;
+    virtual ~Node();
+    Node(const std::string & id);
 
 protected:
-    virtual ~Node();
 
 private:
     std::string mID;
-    std::vector<Node *> mChildren;
+    std::vector<std::shared_ptr<Node> > mChildren;
     mutable size_t mReferenceCount;
 };
 
