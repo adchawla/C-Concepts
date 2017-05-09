@@ -7,7 +7,7 @@ class Node
 {
 public:
     const std::string & id();
-    void addChild(const std::shared_ptr<Node> & node);
+    std::shared_ptr<Node> addChild(const std::shared_ptr<Node> & node);
     size_t countOfChildren();
     std::shared_ptr<Node> getChild(size_t index);
     static std::shared_ptr<Node> makeNode(std::string & id);

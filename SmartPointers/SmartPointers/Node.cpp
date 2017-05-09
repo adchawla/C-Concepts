@@ -20,9 +20,10 @@ const std::string & Node::id()
     return mID;
 }
 
-void Node::addChild(const std::shared_ptr<Node> & node)
+std::shared_ptr<Node> Node::addChild(const std::shared_ptr<Node> & node)
 {
     mChildren.push_back(node);
+    return std::shared_ptr<Node>(this);
 }
 
 std::shared_ptr<Node> Node::getChild(size_t index)

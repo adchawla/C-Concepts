@@ -15,13 +15,13 @@ int main() {
     auto child1 = Node::makeNode(std::string("child1"));
     {
         auto rootNode = Node::makeNode(std::string("root"));
-        rootNode->addChild(child1);
-        rootNode->addChild(Node::makeNode(std::string("child2")));
-        rootNode->addChild(Node::makeNode(std::string("child3")));
-        rootNode->addChild(Node::makeNode(std::string("child4")));
-        child1->addChild(Node::makeNode(std::string("grandChild1")));
-        child1->addChild(Node::makeNode(std::string("grandChild2")));
-        child1->addChild(Node::makeNode(std::string("grandChild3")));
+        rootNode->addChild(child1)
+            ->addChild(Node::makeNode(std::string("child2")))
+            ->addChild(Node::makeNode(std::string("child3")))
+            ->addChild(Node::makeNode(std::string("child4")));
+        child1->addChild(Node::makeNode(std::string("grandChild1")))
+            ->addChild(Node::makeNode(std::string("grandChild2")))
+            ->addChild(Node::makeNode(std::string("grandChild3")));
         printTree(rootNode);
     }
     printTree(child1);
